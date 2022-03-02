@@ -9,17 +9,19 @@ def encode(s):
     if len(s) > 1000:
         raise ValueError
     for c in s:
-        #raise ValueError
+        #invalid letters
         if c in ['å', 'ä', 'ö']:
             raise ValueError
         if c.isalpha():
             if c.islower():
                 c=c.upper()
+            elif c.isupper():
+                c = c.lower
             # Rot13 the character for maximum security
             crypted+=codecs.encode(c,'rot13')
         elif c in digitmapping:
             crypted+=digitmapping[c]
-        #if not a letter or not in digitmapping
+        #if not a letter and not in digitmapping
         else:
             raise ValueError
 
